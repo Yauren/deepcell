@@ -30,6 +30,8 @@ Top to bottom:
 3. Underground: a side-on cutaway of the bunker. A lift shaft runs down the left side with floor plates (B1, B2). Each room shows its wall, props, the survivors working there, its payout (for example +5 scrap), and a progress bar. Tap the room itself to work it. Automated rooms show their machine and a spinning gear. Earth continues below the deepest room.
 4. Bottom tabs: Defense, Supplies, Automation open an upgrade sheet over the rooms (tap the tab again or ✕ to close). Survivors opens the Survivors screen.
 
+A green arrow between the surface and underground collapses the entire room panel, giving the surface the remaining height; tap the down arrow to show the rooms again. Rooms start expanded each time the game Activity is created. Production, upkeep and Collectors continue while hidden. Collapsing closes the upgrade sheet; selecting an upgrade tab reopens the room panel. Tutorial steps about rooms also reveal it. Resizing preserves each live enemy's progress towards the hatch.
+
 The art style is stylized 3D rendered to images: dark, lamp-lit rooms, procedural rust and grime, banded (toon) lighting, dark outlines and a cool rim light. Palette: soot, concrete, rust, sodium-lamp amber, toxic green, cold slate for the interface. Interface text is kept to names and numbers.
 
 ## Resources

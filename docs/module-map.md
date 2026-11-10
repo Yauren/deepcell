@@ -2,6 +2,8 @@
 
 Where the code uses each course module. Keep this table current when you add code.
 
+The collapsible underground uses Module 6: `ui/UndergroundToggle.kt` changes the existing panel's visibility with an ImageButton listener; `view_underground_toggle.xml` is included in `activity_game.xml`. GameActivity's layout listener preserves enemy progress and refreshes tutorial targets after resizing. The arrow uses Android's built-in drawable, and its accessibility labels are string resources (Module 4).
+
 | Module | Topic | Where it is used |
 |---|---|---|
 | 1 | Intro to Android | `AndroidManifest.xml`: app, 4 activities, launcher activity, permission |

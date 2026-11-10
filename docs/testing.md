@@ -2,6 +2,18 @@
 
 Record each build and test here, newest first. Say plainly what was not tested.
 
+## 2026-11-10: collapsible underground (JaielJohannPerez fork)
+
+- `gradlew.bat assembleDebug`: **BUILD SUCCESSFUL** using Android Studio's bundled Java runtime and the existing Android SDK. The pre-existing local daemon JVM configuration was left unchanged and is not included in the feature.
+- Changed XML files parsed successfully; `git diff --check` passed.
+- Installed with `adb -s emulator-5554 install -r`; continued the existing emulator save without clearing app data. Not installed or tested on a phone.
+- Screenshot and UI hierarchy checks: rooms initially visible; up arrow hides rooms; down arrow restores them; sky grows from 558px to 1533px on this emulator, while HUD and bottom tabs remain accessible.
+- Defense while collapsed reveals the panel and upgrade sheet. Collapsing with the sheet open closes it, and expanding again leaves it closed. Checks passed against captured UI hierarchies.
+- No Deepcell or Java fatal exception entries in the emulator crash buffer. Unrelated system Bluetooth crashes were present in that buffer.
+- Reviewed the resize calculation: an enemy's bottom-edge progress `(y + spriteHeight) / skyHeight` is preserved. Production, Collector, upkeep, upgrade purchase and save code were not changed.
+- Not interactively tested: active tutorial transitions, staffed-room/Collector production while hidden, rapid repeated resizing near impact, other screen sizes, older Android versions, or applying this patch to older commits. Those remain follow-up checks rather than claimed passes.
+- Returned the emulator game to its menu after the smoke test.
+
 ## 2026-11-07: economy, upkeep, prices, boss bar position
 
 - `gradlew assembleDebug`: **BUILD SUCCESSFUL**. Tested on the emulator; installed on the user's Pixel 7 at their request (not run there by the author). Emulator data was cleared (an earlier save edit piped through `adb shell` corrupted the file; edits now go through `adb push`).

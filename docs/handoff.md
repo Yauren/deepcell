@@ -4,6 +4,8 @@ Where Deepcell stands and what the next person (or agent) needs to know. Last up
 
 ## State
 
+- JaielJohannPerez fork (2026-11-10): collapsible underground in `ui/UndergroundToggle.kt`, included `view_underground_toggle.xml`, and small GameActivity hooks. Keep new room views inside `undergroundPanel`; production and saves are independent of visibility. See the fork notes for integration and verification.
+
 - Playable base game: four Activities (title, game, survivors, settings), SQLite save, JSON balance, offline earnings, notifications. See `docs/roadmap.md` for done/next.
 - Art: everything visible in play is a Blender render made from code (`tools/blender/`), exported as WebP to `res/drawable-nodpi/`. Panels and buttons are 9-patches from `tools/art/gen_ui.py`. Small inline icons (scrap, food, back, close, skull), notification icon and legacy launcher are vectors from `tools/art/gen_art.py`.
 - Font: Barlow Condensed (`res/font/barlow.xml`, SIL OFL licence in `docs/licenses/`).
