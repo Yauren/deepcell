@@ -31,6 +31,7 @@ import com.deepcell.game.ui.Notifier
 import com.deepcell.game.ui.Quality
 import com.deepcell.game.ui.Sfx
 import com.deepcell.game.ui.Tutorial
+import com.deepcell.game.ui.UndergroundToggle
 import com.deepcell.game.ui.UpgradeAdapter
 import kotlin.random.Random
 
@@ -130,6 +131,7 @@ class GameActivity : AppCompatActivity() {
     private lateinit var roofCrew: FrameLayout
     private lateinit var fxLayer: FrameLayout
     private lateinit var floorList: ListView
+    private lateinit var undergroundToggle: UndergroundToggle
     /** Low detail (ui/Quality): fewer decorations, 20 updates a second. */
     private var lowDetail = false
     private var frameMs = FRAME_MS
@@ -224,6 +226,9 @@ class GameActivity : AppCompatActivity() {
         floorList = findViewById(R.id.floorList)
         floorList.addFooterView(layoutInflater.inflate(R.layout.footer_bedrock, floorList, false), null, false)
         floorList.adapter = floorAdapter
+        undergroundToggle = UndergroundToggle(
+            findViewById(R.id.undergroundPanel), findViewById(R.id.toggleUnderground)
+        ) { selectTab(null) }
 
         upgradeAdapter = UpgradeAdapter(this, { state }) { buyUpgrade(it) }
         findViewById<ListView>(R.id.upgradeList).adapter = upgradeAdapter
@@ -261,6 +266,8 @@ class GameActivity : AppCompatActivity() {
 
         // Tutorial: what each step points at on this screen.
         tutorial = Tutorial(this, db) { step ->
+            // A room tutorial step must keep its target visible.
+            if (step == Tutorial.DIG || step == Tutorial.STORAGE) undergroundToggle.expand()
             when (step) {
                 Tutorial.SHOOT -> sky
                 Tutorial.DIG -> roomRow(0)?.findViewById(R.id.room)
@@ -270,6 +277,19 @@ class GameActivity : AppCompatActivity() {
                     ?.findViewById(R.id.roomStorage)
                 Tutorial.UPGRADES -> defense.parent.parent as? View    // the whole tab bar
                 else -> null
+            }
+        }
+        // Keep each enemy's progress towards the hatch when the sky grows or shrinks.
+        sky.addOnLayoutChangeListener { _, _, top, _, bottom, _, oldTop, _, oldBottom ->
+            val oldHeight = oldBottom - oldTop
+            val newHeight = bottom - top
+            if (oldHeight > 0 && oldHeight != newHeight) {
+                val scale = newHeight.toFloat() / oldHeight
+                for (enemy in enemies) {
+                    enemy.y = (enemy.y + enemy.view.height) * scale - enemy.view.height
+                    enemy.view.translationY = enemy.y
+                }
+                tutorial.show()
             }
         }
     }
@@ -869,6 +889,7 @@ class GameActivity : AppCompatActivity() {
             return
         }
         val wasOpen = upgradeSheet.visibility == View.VISIBLE
+        undergroundToggle.expand()
         val titles = mapOf(
             GameState.TYPE_DEFENSE to R.string.tab_defense,
             GameState.TYPE_SUPPLIES to R.string.tab_supplies,
