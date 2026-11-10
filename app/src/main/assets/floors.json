@@ -1,0 +1,4 @@
+{
+  "dig": { "maxProgress": 10, "yieldPerFill": 5 },
+  "farm": { "maxProgress": 10, "yieldPerFill": 5 }
+}

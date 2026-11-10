@@ -94,6 +94,7 @@
     <string name="tutorial_no">Skip</string>
     <string name="tutorial_skip">Skip tutorial</string>
     <string name="tutorial_next">Got it</string>
+    <string name="tutorial_paused">Game paused. You can still tap the highlighted controls.</string>
     <string name="tutorial_step">Step %1$d of %2$d</string>
     <string name="tutorial_shoot_title">Shoot the drones</string>
     <string name="tutorial_shoot">Tap a drone in the sky to shoot it.</string>

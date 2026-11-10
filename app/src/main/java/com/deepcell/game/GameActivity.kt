@@ -148,6 +148,7 @@ class GameActivity : AppCompatActivity() {
     private lateinit var sfx: Sfx
     private lateinit var music: Music
     private lateinit var tutorial: Tutorial
+    private var tutorialStep = Tutorial.OFF
     private val guardViews = ArrayList<ImageView>()
     private var guardTimerMs = 0L
     private var nextGuard = 0
@@ -215,8 +216,8 @@ class GameActivity : AppCompatActivity() {
         upgradeSheet = findViewById(R.id.upgradeSheet)
         upgradeTitle = findViewById(R.id.upgradeTitle)
 
-        digFloor = Floor("dig", getString(R.string.floor_dig), "scrap", 10, 5)
-        farmFloor = Floor("farm", getString(R.string.floor_farm), "food", 10, 3)
+        digFloor = JsonLoader.loadFloor(this, "dig", getString(R.string.floor_dig), "scrap")
+        farmFloor = JsonLoader.loadFloor(this, "farm", getString(R.string.floor_farm), "food")
         floorAdapter = FloorAdapter(this, listOf(digFloor, farmFloor), { workersIn(it) },
             { f -> state?.let { productionPerSecond(f, it) } ?: 0 }, { hungry }, { openSurvivors() }) {
             onFloorTapped(it)
@@ -260,7 +261,7 @@ class GameActivity : AppCompatActivity() {
         selectTab(null)
 
         // Tutorial: what each step points at on this screen.
-        tutorial = Tutorial(this, db) { step ->
+        tutorial = Tutorial(this, db, onStepChanged = { tutorialStep = it }) { step ->
             when (step) {
                 Tutorial.SHOOT -> sky
                 Tutorial.DIG -> roomRow(0)?.findViewById(R.id.room)
@@ -310,7 +311,15 @@ class GameActivity : AppCompatActivity() {
         digFloor.automated = loaded.level(DRILL_RIG) > 0
         farmFloor.automated = loaded.level(SPRINKLER) > 0
 
-        addOfflineEarnings(loaded)
+        tutorialStep = tutorial.step
+        val wasTutorialPaused = db.getSetting(GameDatabase.SETTING_TUTORIAL_PAUSED, "false") == "true"
+        if (tutorialStep == Tutorial.OFF && !wasTutorialPaused) {
+            addOfflineEarnings(loaded)
+        } else {
+            // Reading the tutorial, including on another screen or after reopening, costs no food.
+            loaded.lastPlayed = System.currentTimeMillis()
+        }
+        db.setSetting(GameDatabase.SETTING_TUTORIAL_PAUSED, (tutorialStep != Tutorial.OFF).toString())
 
         if (currentWave == null) startWave()
         updateMusic()
@@ -345,6 +354,7 @@ class GameActivity : AppCompatActivity() {
         s.farmStock = farmFloor.stock
         s.lastPlayed = System.currentTimeMillis()
         db.saveState(s)
+        db.setSetting(GameDatabase.SETTING_TUTORIAL_PAUSED, (tutorialStep != Tutorial.OFF).toString())
     }
 
     /**
@@ -429,6 +439,10 @@ class GameActivity : AppCompatActivity() {
     private fun step() {
         val s = state ?: return
         if (sky.height == 0) return     // layout not measured yet
+        if (tutorialStep != Tutorial.OFF) {
+            prepareTutorialShot()
+            return     // no movement, spawning, guards, machines, production or food upkeep
+        }
 
         // Spawn the next enemy of the wave.
         val wave = currentWave
@@ -677,6 +691,17 @@ class GameActivity : AppCompatActivity() {
         view.startAnimation(AnimationUtils.loadAnimation(this, R.anim.enemy_in))
         enemies.add(enemy)
         if (type.id == BOSS) updateBossBar()
+    }
+
+    /** Give the first instruction a visible, stationary target without running the wave. */
+    private fun prepareTutorialShot() {
+        if (tutorialStep != Tutorial.SHOOT || enemies.isNotEmpty() || spawnQueue.isEmpty()) return
+        spawnEnemy(spawnQueue.removeAt(0))
+        val enemy = enemies.lastOrNull() ?: return
+        enemy.y = sky.height / 4f
+        enemy.view.translationX = (sky.width - enemy.view.layoutParams.width) / 2f
+        enemy.view.translationY = enemy.y
+        enemy.view.clearAnimation()
     }
 
     /** Manual shot: 1 + Sharpened Rounds level + one per survivor on the roof. */

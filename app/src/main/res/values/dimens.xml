@@ -4,4 +4,5 @@
     <dimen name="room_height">140dp</dimen>
     <dimen name="bunker_width">240dp</dimen>
     <dimen name="bunker_height">120dp</dimen>
+    <dimen name="resource_price_icon_size">24dp</dimen>
 </resources>

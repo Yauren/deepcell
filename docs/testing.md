@@ -2,6 +2,15 @@
 
 Record each build and test here, newest first. Say plainly what was not tested.
 
+## 2026-11-10: MSVIII tutorial pause, resource icons and food payout
+
+- `gradlew.bat --no-daemon '-Pandroid.builder.sdkDownload=false' assembleDebug`: **BUILD SUCCESSFUL** (3m 8s; 34 tasks, 14 executed). Kotlin compilation and Android resource processing passed.
+- Inspected the packaged APK: `assets/floors.json` contains 5-resource payouts and 10-progress bars for both rooms.
+- Source audit: no references to legacy `ic_food` or `ic_scrap` remain in app Kotlin or layouts; existing rendered HUD icons are reused with explicit 24dp price bounds.
+- Temporary read-only `Small_Phone` emulator (API 37.1, serial emulator-5580): APK installation succeeded. The initial 1 GB session reached the title screen but System UI stopped responding. A 2 GB retry booted and installed the APK, but UI Automation timed out/terminated (exit 137) and the final screen remained at the splash. The crash log contained UI Automation infrastructure failures; no successful in-game play check is claimed.
+- **Not verified in play:** tutorial progression, stationary target tapping, pause over a long read, resume/skip/offline catch-up behavior, farm payouts through manual/worker/machine/offline paths, price icon sizing, and existing-save behavior. These require a healthy emulator or a phone. No automated test dependency was added.
+- No installation or testing on a physical phone. No art or audio was regenerated.
+
 ## 2026-11-07: economy, upkeep, prices, boss bar position
 
 - `gradlew assembleDebug`: **BUILD SUCCESSFUL**. Tested on the emulator; installed on the user's Pixel 7 at their request (not run there by the author). Emulator data was cleared (an earlier save edit piped through `adb shell` corrupted the file; edits now go through `adb push`).

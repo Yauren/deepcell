@@ -53,6 +53,8 @@ Survivors are never killed. A new game starts with one survivor on the Roof and 
 
 Offered after naming a new bunker. Steps: shoot a drone, dig and collect, recruit, change a job, storage and collecting, upgrades and repair. Can be skipped at any step.
 
+The simulation pauses for every tutorial step: enemies and waves do not advance, guards and machines do not fire, rooms do not produce automatically, and food upkeep stops. Manual taps, recruiting and job changes still work. The shooting step provides one stationary enemy from the current wave. Finishing or skipping the tutorial resumes play. Time spent away during the tutorial is also excluded from offline production and upkeep, including a skip on the Survivors screen.
+
 ## Enemies
 
 | Enemy | HP | Speed (dp/s) | Hatch damage | Scrap reward |
@@ -90,7 +92,9 @@ The numbers live in `assets/waves.json`.
 | Floor | Full bar | Pays | Manual tap adds | Machine |
 |---|---|---|---|---|
 | Scrap Dig | 10 | 5 scrap | 1 + Better Shovels level + diggers | Drill Rig: +level progress per second |
-| Mushroom Farm | 10 | 3 food | 1 + Spore Trays level + farmers | Sprinkler: +level progress per second |
+| Mushroom Farm | 10 | 5 food | 1 + Spore Trays level + farmers | Sprinkler: +level progress per second |
+
+Room bar lengths and payouts are loaded from `assets/floors.json`. Both rooms now pay 5 per full bar, so their base storage (ten bars) is 50 resources. Existing stored resources and progress are preserved. Resource prices in upgrades and recruiting use the same rendered scrap and food icons as the HUD, sized to 24dp on buttons.
 
 ## Upgrades
 

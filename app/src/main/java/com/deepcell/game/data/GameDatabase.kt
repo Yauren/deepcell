@@ -339,6 +339,7 @@ class GameDatabase(context: Context) :
         const val SETTING_DETAIL = "detail"           // ui.Quality.AUTO / HIGH / LOW
         const val SETTING_MUSIC = "music_on"          // "true" / "false"
         const val SETTING_TUTORIAL = "tutorial_step"  // ui.Tutorial step number, 0 = off or finished
+        const val SETTING_TUTORIAL_PAUSED = "tutorial_paused" // skip elapsed tutorial time on resume
         /** The first recruit (SurvivorsActivity.RECRUIT_BASE, 25) plus a few minutes of meals. */
         const val START_FOOD = 40
     }

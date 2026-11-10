@@ -47,7 +47,7 @@ class UpgradeAdapter(
         "work_shifts" -> R.drawable.icon_up_work_shifts
         "sprinkler" -> R.drawable.icon_up_sprinkler
         "repair_arm" -> R.drawable.icon_up_repair_arm
-        else -> R.drawable.ic_scrap
+        else -> R.drawable.icon_scrap
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -77,9 +77,7 @@ class UpgradeAdapter(
             button.alpha = if (have != null && have >= cost) 1f else 0.45f
         }
         // Price icon: scrap for most upgrades, a mushroom for the ones paid in food.
-        button.setCompoundDrawablesRelativeWithIntrinsicBounds(
-            if (upgrade.paidInFood) R.drawable.ic_food else R.drawable.ic_scrap, 0, 0, 0
-        )
+        ResourceIcons.setPriceIcon(button, upgrade.paidInFood)
         button.setOnClickListener { onBuy(upgrade) }
         return row
     }

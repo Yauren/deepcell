@@ -1,6 +1,13 @@
 # Handoff
 
-Where Deepcell stands and what the next person (or agent) needs to know. Last updated 2026-11-07 (economy: upkeep, food prices, tap cap, dearer everything). Read with `AGENTS.md`, `docs/design.md`, `docs/roadmap.md` and `docs/workflow.md` (tools, Blender MCP setup, testing).
+Where Deepcell stands and what the next person (or agent) needs to know. Last updated 2026-11-10 (MSVIII fork: tutorial pause, consistent resource price icons, food payout). Read with `AGENTS.md`, `docs/design.md`, `docs/roadmap.md` and `docs/workflow.md` (tools, Blender MCP setup, testing).
+
+## MSVIII fork changes (2026-11-10)
+
+- `Tutorial` reports step changes to `GameActivity`. The game loop does not advance while a tutorial step is active; step 1 places one queued enemy in the sky for a manual shot. Skip/completion resumes play. Tutorial instructions display a paused hint.
+- `tutorial_paused` is an existing-table setting, not a database migration. `saveNow` records it and `onResume` excludes elapsed tutorial time from offline earnings and meals, including screen changes and app recreation.
+- `assets/floors.json` holds room bar lengths and payouts. Mushroom Farm now gives 5 food, matching 5 scrap; its base storage is now 50. Existing saves retain their resource amounts and room progress.
+- `ui/ResourceIcons.kt` applies the HUD's existing scrap/food images to upgrade and recruitment prices at 24dp. No assets were regenerated.
 
 ## State
 
