@@ -1,6 +1,7 @@
 package com.deepcell.game.data
 
 import android.content.Context
+import com.deepcell.game.model.Floor
 import com.deepcell.game.model.EnemyType
 import com.deepcell.game.model.Upgrade
 import com.deepcell.game.model.Wave
@@ -15,6 +16,12 @@ object JsonLoader {
 
     private fun readAsset(context: Context, fileName: String): String =
         context.assets.open(fileName).bufferedReader().use { it.readText() }
+
+    /** Room payouts and bar lengths live in JSON, so changing the economy needs no code edit. */
+    fun loadFloor(context: Context, id: String, name: String, resource: String): Floor {
+        val balance = JSONObject(readAsset(context, "floors.json")).getJSONObject(id)
+        return Floor(id, name, resource, balance.getInt("maxProgress"), balance.getInt("yieldPerFill"))
+    }
 
     fun loadUpgrades(context: Context): List<Upgrade> {
         val root = JSONObject(readAsset(context, "upgrades.json"))

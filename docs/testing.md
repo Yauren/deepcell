@@ -2,6 +2,12 @@
 
 Record each build and test here, newest first. Say plainly what was not tested.
 
+## 2026-11-20: merged PR #1 (collapsible underground) and PR #2 (tutorial pause, icons, payouts)
+
+- Resolved one code conflict in `GameActivity.kt` (the `Tutorial(...)` call keeps both `onStepChanged` and the underground `expand()` for room steps) and kept both sides of the docs.
+- `gradlew.bat assembleDebug`: **BUILD SUCCESSFUL**.
+- **Not tested:** the two features together on a device or emulator (for example the tutorial pausing while the underground is collapsed).
+
 ## 2026-11-10: collapsible underground (JaielJohannPerez fork)
 
 - `gradlew.bat assembleDebug`: **BUILD SUCCESSFUL** using Android Studio's bundled Java runtime and the existing Android SDK. The pre-existing local daemon JVM configuration was left unchanged and is not included in the feature.
@@ -13,6 +19,15 @@ Record each build and test here, newest first. Say plainly what was not tested.
 - Reviewed the resize calculation: an enemy's bottom-edge progress `(y + spriteHeight) / skyHeight` is preserved. Production, Collector, upkeep, upgrade purchase and save code were not changed.
 - Not interactively tested: active tutorial transitions, staffed-room/Collector production while hidden, rapid repeated resizing near impact, other screen sizes, older Android versions, or applying this patch to older commits. Those remain follow-up checks rather than claimed passes.
 - Returned the emulator game to its menu after the smoke test.
+
+## 2026-11-10: MSVIII tutorial pause, resource icons and food payout
+
+- `gradlew.bat --no-daemon '-Pandroid.builder.sdkDownload=false' assembleDebug`: **BUILD SUCCESSFUL** (3m 8s; 34 tasks, 14 executed). Kotlin compilation and Android resource processing passed.
+- Inspected the packaged APK: `assets/floors.json` contains 5-resource payouts and 10-progress bars for both rooms.
+- Source audit: no references to legacy `ic_food` or `ic_scrap` remain in app Kotlin or layouts; existing rendered HUD icons are reused with explicit 24dp price bounds.
+- Temporary read-only `Small_Phone` emulator (API 37.1, serial emulator-5580): APK installation succeeded. The initial 1 GB session reached the title screen but System UI stopped responding. A 2 GB retry booted and installed the APK, but UI Automation timed out/terminated (exit 137) and the final screen remained at the splash. The crash log contained UI Automation infrastructure failures; no successful in-game play check is claimed.
+- **Not verified in play:** tutorial progression, stationary target tapping, pause over a long read, resume/skip/offline catch-up behavior, farm payouts through manual/worker/machine/offline paths, price icon sizing, and existing-save behavior. These require a healthy emulator or a phone. No automated test dependency was added.
+- No installation or testing on a physical phone. No art or audio was regenerated.
 
 ## 2026-11-07: economy, upkeep, prices, boss bar position
 

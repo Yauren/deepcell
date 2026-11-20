@@ -25,6 +25,7 @@ import com.deepcell.game.data.GameDatabase
 class Tutorial(
     private val activity: Activity,
     private val db: GameDatabase,
+    private val onStepChanged: (Int) -> Unit = {},
     private val target: (Int) -> View?
 ) {
 
@@ -85,6 +86,7 @@ class Tutorial(
     /** Shows the current step if it belongs to this screen; hides the overlay otherwise. */
     fun show() {
         val s = step
+        onStepChanged(s)
         val view = if (s == OFF) null else target(s)
         if (view == null) {
             hide()
@@ -109,6 +111,7 @@ class Tutorial(
 
     fun finish() {
         db.setSetting(GameDatabase.SETTING_TUTORIAL, OFF.toString())
+        onStepChanged(OFF)
         hide()
     }
 

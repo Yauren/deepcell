@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.deepcell.game.data.GameDatabase
 import com.deepcell.game.model.Survivor
+import com.deepcell.game.ui.ResourceIcons
 import com.deepcell.game.ui.Jobs
 import com.deepcell.game.ui.SurvivorAdapter
 import com.deepcell.game.ui.Tutorial
@@ -61,6 +62,7 @@ class SurvivorsActivity : AppCompatActivity() {
         listView.setOnItemClickListener { _, _, position, _ -> pickJob(survivors[position]) }
 
         recruitButton = findViewById(R.id.recruitButton)
+        ResourceIcons.setPriceIcon(recruitButton, food = true, atEnd = true)
 
         // Tutorial steps on this screen point at the recruit button, then at the newest survivor.
         tutorial = Tutorial(this, db) { step ->

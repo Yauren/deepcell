@@ -9,6 +9,13 @@ Why the base app is built the way it is. Add a dated entry when the group decide
 - Preserve live enemy progress relative to the sky height on resize to avoid instant hatch hits when showing rooms again. Speeds and balance values stay as defined in the base.
 - Integration was written against `d814c79`. Older or independently changed layouts may need the small Activity hooks and panel ID applied manually; compatibility with every earlier commit is not assumed. Existing files are not moved or reformatted.
 
+## 2026-11-10: MSVIII tutorial safety and resource consistency
+
+- Freeze the simulation for the entire active tutorial, including action instructions, so taking time to read cannot cause a breach or hunger. Keep manual actions usable, and move one real wave enemy into a stationary shooting position to avoid blocking the first instruction.
+- Persist a `tutorial_paused` flag in the existing settings table. Returning from another screen or reopening skips elapsed tutorial time, even if the player skipped the tutorial on Survivors. No schema change or DB_VERSION increase is needed.
+- Reuse the existing HUD render assets for every resource price. Set explicit 24dp drawable bounds instead of using the much larger image dimensions, and keep upgrade-specific feature icons intact.
+- Raise Mushroom Farm's per-bar payout from 3 to 5. Load both rooms' payouts and bar lengths from a new `floors.json` asset rather than hard-coding balance values in Kotlin. The existing ten-bar storage formula raises the farm's base capacity from 30 to 50; stored quantities are retained.
+
 ## 2026-11-07: base app
 
 - **Course modules only.** The professor said to use only what the modules covered. See `AGENTS.md` and `docs/module-map.md`.

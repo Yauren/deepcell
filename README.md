@@ -85,9 +85,9 @@ app/src/main/
     SettingsActivity.kt    sound, music, difficulty, detail, reset save, share, main menu
     model/Models.kt        data classes: Upgrade, Floor, Enemy, Wave, Survivor, GameState
     data/GameDatabase.kt   SQLiteOpenHelper: the save (never wiped on upgrade)
-    data/JsonLoader.kt     reads assets/upgrades.json and assets/waves.json
+    data/JsonLoader.kt     reads balance JSON for upgrades, waves and floors
     ui/                    adapters, tutorial, effects, sound, music, title screen
-  assets/                  upgrades.json, waves.json: all balance numbers
+  assets/                  upgrades.json, waves.json, floors.json: balance values
   res/                     layouts, strings, colours, themes, drawables, anim, raw (audio)
 docs/                      design, module map, roadmap, decisions, testing, handoff
 tools/blender/             Blender scripts that build and render every scene, character and icon

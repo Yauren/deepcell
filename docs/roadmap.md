@@ -4,6 +4,12 @@
 
 - Collapsible underground rooms: green boundary arrow, expanded combat area, automatic reveal for upgrades and room tutorial steps; production continues while hidden. No balance or save changes.
 
+## Done in the MSVIII fork (2026-11-10)
+
+- Freeze combat, production and upkeep throughout every tutorial instruction; manual actions remain available and step 1 supplies a stationary drone. Tutorial time is excluded from offline catch-up.
+- Use the HUD scrap and food artwork for all upgrade and recruitment prices with bounded 24dp icons.
+- Mushroom Farm payout raised from 3 to 5 food per full bar. Room payouts and bar lengths now live in `assets/floors.json`; both rooms have base storage for 50 resources.
+
 ## Done in the base app (2026-11-07)
 
 - Project setup: Kotlin, XML layouts, Gradle Kotlin DSL, one `app` module, minSdk 24.

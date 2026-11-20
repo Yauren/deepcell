@@ -102,7 +102,6 @@
             android:id="@+id/recruitButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_food"
             android:drawablePadding="4dp"
             android:paddingStart="14dp"
             android:paddingEnd="12dp" />
