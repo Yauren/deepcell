@@ -2,6 +2,15 @@
 
 Record each build and test here, newest first. Say plainly what was not tested.
 
+## 2026-11-20: full tutorial on a Pixel 7 (physical phone)
+
+- App data on the phone was cleared (with the owner's OK), then New Game, Tutorial. Build with the `canCollapse` fix, installed over wireless debugging.
+- All six steps played through: shoot the drone, dig (25 taps), leave and reopen the app (it resumed on step 3, still paused), Survivors and Recruit, choose a job, collect (step 5), Get stronger (step 6).
+- The game stayed frozen on every step while reading (drone and hatch unchanged). After the last step it unfroze: drones spawned and the hatch took damage (93/100).
+- Step 5: the collapse arrow did nothing, so the highlighted room stayed visible. Step 6: collapsing works, and the tutorial card and bottom tabs stayed usable. After the tutorial, collapse and expand both work, and Scrap Dig kept filling (5/50) while collapsed.
+- No new crash entries (the only entry in the crash buffer is from 2026-11-16 and is not this app).
+- **Not tested:** offline catch-up after the tutorial, other phones or Android versions, play past wave 1.
+
 ## 2026-11-20: tutorial on the merged build (emulator)
 
 - Cleared the emulator's app data, started a new game and chose Tutorial. Step 1: over 10 seconds of reading the drone and base stayed put (Haven 100/100), shooting the drone advanced to step 2.
