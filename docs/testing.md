@@ -2,6 +2,11 @@
 
 Record each build and test here, newest first. Say plainly what was not tested.
 
+## 2026-11-20: version 0.2 release build
+
+- `versionName` 0.2, `versionCode` 2. `gradlew.bat assembleDebug`: **BUILD SUCCESSFUL**. Debug-signed APK published as `Deepcell-0.2.apk`.
+- This is the build tested in the sections below on a Pixel 7 and on emulators; everything that was not tested there is still not tested.
+
 ## 2026-11-20: Survivors screen set to singleTop
 
 - `SurvivorsActivity` now has `android:launchMode="singleTop"` in `AndroidManifest.xml`, like `GameActivity`, so a fast double tap on the Survivors tab cannot stack two copies. This is a precaution: the double-tap cause of the stale screen seen once on Android 14 was never reproduced.
