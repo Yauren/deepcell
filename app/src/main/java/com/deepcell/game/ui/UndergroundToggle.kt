@@ -8,6 +8,8 @@ import com.deepcell.game.R
 class UndergroundToggle(
     private val panel: View,
     private val button: ImageButton,
+    // False while a tutorial step points at a room, so the target cannot be hidden.
+    private val canCollapse: () -> Boolean,
     private val onCollapse: () -> Unit
 ) {
     private val collapsed: Boolean get() = panel.visibility == View.GONE
@@ -15,6 +17,7 @@ class UndergroundToggle(
     init {
         button.setOnClickListener {
             val hide = !collapsed
+            if (hide && !canCollapse()) return@setOnClickListener
             if (hide) onCollapse()
             setCollapsed(hide)
         }

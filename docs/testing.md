@@ -2,6 +2,14 @@
 
 Record each build and test here, newest first. Say plainly what was not tested.
 
+## 2026-11-20: tutorial on the merged build (emulator)
+
+- Cleared the emulator's app data, started a new game and chose Tutorial. Step 1: over 10 seconds of reading the drone and base stayed put (Haven 100/100), shooting the drone advanced to step 2.
+- **Bug found:** collapsing the underground during step 2 or 5 hid the room the tutorial points at, leaving the highlight and arrow floating over empty space. **Fixed:** `UndergroundToggle` takes a `canCollapse` check, and `GameActivity` refuses to collapse while the tutorial is on DIG or STORAGE.
+- After the fix: toggle tap during step 2 is ignored; reinstalled over the save, Continue resumed on step 2 still paused; tapping Scrap Dig advanced to step 3; Survivors screen showed step 3 with the Recruit button highlighted; recruiting moved to step 4 with the new worker highlighted. Price icons looked normal size.
+- `gradlew.bat assembleDebug`: **BUILD SUCCESSFUL**.
+- **Not tested:** steps 5 and 6, collapsing outside the DIG/STORAGE steps while the tutorial is active, offline catch-up after the tutorial, a physical phone.
+
 ## 2026-11-20: merged PR #1 (collapsible underground) and PR #2 (tutorial pause, icons, payouts)
 
 - Resolved one code conflict in `GameActivity.kt` (the `Tutorial(...)` call keeps both `onStepChanged` and the underground `expand()` for room steps) and kept both sides of the docs.

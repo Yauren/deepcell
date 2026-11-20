@@ -228,7 +228,8 @@ class GameActivity : AppCompatActivity() {
         floorList.addFooterView(layoutInflater.inflate(R.layout.footer_bedrock, floorList, false), null, false)
         floorList.adapter = floorAdapter
         undergroundToggle = UndergroundToggle(
-            findViewById(R.id.undergroundPanel), findViewById(R.id.toggleUnderground)
+            findViewById(R.id.undergroundPanel), findViewById(R.id.toggleUnderground),
+            canCollapse = { tutorialStep != Tutorial.DIG && tutorialStep != Tutorial.STORAGE }
         ) { selectTab(null) }
 
         upgradeAdapter = UpgradeAdapter(this, { state }) { buyUpgrade(it) }

@@ -2,6 +2,10 @@
 
 Why the base app is built the way it is. Add a dated entry when the group decides something.
 
+## 2026-11-20: underground cannot collapse during room tutorial steps
+
+- Merging the collapsible underground with the tutorial showed that collapsing on the DIG or STORAGE step hides the highlighted room. `UndergroundToggle` now takes a `canCollapse` check and `GameActivity` returns false for those two steps. Other steps can still collapse.
+
 ## 2026-11-10: collapsible underground in JaielJohannPerez's fork
 
 - Keep this optional UI behavior in `ui/UndergroundToggle.kt` and a small included layout. Hide the existing room container without replacing views, changing adapters, or stopping the game loop. New floors added inside that container are included automatically.
