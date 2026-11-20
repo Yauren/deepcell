@@ -2,6 +2,15 @@
 
 Record each build and test here, newest first. Say plainly what was not tested.
 
+## 2026-11-20: Android 7, Android 14 and a tablet-size screen (emulators)
+
+- Android 7.0 (API 24, the app's minSdk; 720x1280): installs and launches. New Game, Tutorial, step 1 pause and highlight, shooting the drone, and digging to step 3 (Get a worker) all worked. No crash entries from the app. Steps 3 to 6 were not played on this version.
+- Android 14 (API 34, 1080x2220): same flow plus Recruit and choosing a job. Notification permission prompt appeared and was allowed. Quitting and reopening kept the save (2 survivors, 15 food, 2 scrap).
+- Tablet size (Android 14 emulator set to 1600x2560 at 320dpi): the menu and game screen fit, the tutorial card sits at the bottom, nothing overlaps the tabs. Only the menu and the game screen were looked at, not the other screens.
+- **Seen once, not explained:** on Android 14, after choosing a job and tapping Back, the Survivors screen showed an older state (one survivor, 40 food) instead of the two survivors and 15 food that were saved. The database file and the reopened game both had the correct saved data, and a second attempt to repeat it did not show it. It may come from tapping faster than the screens change, but it was not confirmed either way.
+- Also on Android 14: the tutorial step was saved as step 2 even though the player had moved on to the job step, so reopening the game put the tutorial back on step 2. This happened because the tutorial was left through the Survivors screen without finishing the dig step first.
+- **Not tested:** Android 8 to 10, 12, 13 and 15 to 16, tablets other than a resized emulator, boss waves, the breach toast and notification text.
+
 ## 2026-11-20: Android 11, hatch breach, wave progress
 
 - Android 11 (API 30, x86_64 Google APIs emulator, 1080x2220): the game installs and launches. New Game, Tutorial, shooting the drone, digging, Survivors and Recruit all worked, and skipping the tutorial unpaused the game (a drone hit the hatch, 93/100). No crash entries from the app.
