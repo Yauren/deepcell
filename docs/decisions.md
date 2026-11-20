@@ -2,6 +2,10 @@
 
 Why the base app is built the way it is. Add a dated entry when the group decides something.
 
+## 2026-11-20: Survivors screen is singleTop
+
+- A standard-launch Survivors screen could be opened twice by a fast double tap on the tab, leaving an older copy underneath. `singleTop` (already used by the Game screen) reuses the open copy. Added as a precaution after one unexplained stale screen on Android 14; the cause was not confirmed.
+
 ## 2026-11-20: underground cannot collapse during room tutorial steps
 
 - Merging the collapsible underground with the tutorial showed that collapsing on the DIG or STORAGE step hides the highlighted room. `UndergroundToggle` now takes a `canCollapse` check and `GameActivity` returns false for those two steps. Other steps can still collapse.

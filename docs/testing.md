@@ -2,6 +2,13 @@
 
 Record each build and test here, newest first. Say plainly what was not tested.
 
+## 2026-11-20: Survivors screen set to singleTop
+
+- `SurvivorsActivity` now has `android:launchMode="singleTop"` in `AndroidManifest.xml`, like `GameActivity`, so a fast double tap on the Survivors tab cannot stack two copies. This is a precaution: the double-tap cause of the stale screen seen once on Android 14 was never reproduced.
+- `gradlew.bat assembleDebug`: **BUILD SUCCESSFUL**.
+- Android 14 emulator, existing save: Continue, Survivors tab (once, then two quick taps in the same shell command) left a single Survivors screen on the stack; one Back returned to the game with 12 scrap, 15 food and 1 worker. No crash entries.
+- **Not tested:** a real finger double tap (adb taps are slower), other Android versions with this change.
+
 ## 2026-11-20: Android 7, Android 14 and a tablet-size screen (emulators)
 
 - Android 7.0 (API 24, the app's minSdk; 720x1280): installs and launches. New Game, Tutorial, step 1 pause and highlight, shooting the drone, and digging to step 3 (Get a worker) all worked. No crash entries from the app. Steps 3 to 6 were not played on this version.

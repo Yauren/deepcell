@@ -31,6 +31,7 @@
         <activity
             android:name=".SurvivorsActivity"
             android:exported="false"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
         <activity
