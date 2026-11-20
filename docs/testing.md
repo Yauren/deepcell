@@ -2,6 +2,12 @@
 
 Record each build and test here, newest first. Say plainly what was not tested.
 
+## 2026-11-20: Android 11, hatch breach, wave progress
+
+- Android 11 (API 30, x86_64 Google APIs emulator, 1080x2220): the game installs and launches. New Game, Tutorial, shooting the drone, digging, Survivors and Recruit all worked, and skipping the tutorial unpaused the game (a drone hit the hatch, 93/100). No crash entries from the app.
+- Pixel 7, left running with no input: waves advanced from 1 to 6. Between two checks the wave went from 6 back to 5 and the hatch from 33/100 to 65/100, which matches the breach rule (fall back one wave, hatch patched). The toast and notification were not seen on screen, so the 25% scrap loss was not checked (scrap was only 3). Food hit 0 and the digger showed "no food, stopped", as designed. No crashes.
+- **Not tested:** the breach toast text and notification, a breach with a larger scrap amount, boss waves, Android 7 to 10 and 12 to 16, tablets.
+
 ## 2026-11-20: offline catch-up, later waves and a small screen
 
 - Pixel 7: sent the game to the background for about 100 seconds and reopened it. Scrap Dig storage went from 40/50 to a full 50/50, scrap rose from 15 to 19, food fell from 11 to 6 (two survivors eating), and the game opened without a crash.
