@@ -2,6 +2,13 @@
 
 Why the base app is built the way it is. Add a dated entry when the group decides something.
 
+## 2026-11-10: collapsible underground in JaielJohannPerez's fork
+
+- Keep this optional UI behavior in `ui/UndergroundToggle.kt` and a small included layout. Hide the existing room container without replacing views, changing adapters, or stopping the game loop. New floors added inside that container are included automatically.
+- Keep rooms expanded on Activity creation; the toggle does not add settings or a database migration. Upgrade tabs and room tutorial steps reveal the panel.
+- Preserve live enemy progress relative to the sky height on resize to avoid instant hatch hits when showing rooms again. Speeds and balance values stay as defined in the base.
+- Integration was written against `d814c79`. Older or independently changed layouts may need the small Activity hooks and panel ID applied manually; compatibility with every earlier commit is not assumed. Existing files are not moved or reformatted.
+
 ## 2026-11-07: base app
 
 - **Course modules only.** The professor said to use only what the modules covered. See `AGENTS.md` and `docs/module-map.md`.

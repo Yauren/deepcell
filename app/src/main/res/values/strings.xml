@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="collapse_underground">Hide underground rooms</string>
+    <string name="expand_underground">Show underground rooms</string>
     <string name="app_name">Deepcell</string>
     <string name="default_bunker_name">Bunker Nine</string>
 

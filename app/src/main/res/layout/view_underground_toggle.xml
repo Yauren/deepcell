@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Small arrow with a full-width, 48dp tap target at the surface/room boundary. -->
+<ImageButton xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toggleUnderground"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="@drawable/bg_hud"
+    android:contentDescription="@string/collapse_underground"
+    android:padding="12dp"
+    android:scaleType="centerInside"
+    android:src="@android:drawable/arrow_up_float"
+    android:tint="@color/ring_on" />

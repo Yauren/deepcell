@@ -1,5 +1,9 @@
 # Roadmap
 
+## Done in JaielJohannPerez's fork (2026-11-10)
+
+- Collapsible underground rooms: green boundary arrow, expanded combat area, automatic reveal for upgrades and room tutorial steps; production continues while hidden. No balance or save changes.
+
 ## Done in the base app (2026-11-07)
 
 - Project setup: Kotlin, XML layouts, Gradle Kotlin DSL, one `app` module, minSdk 24.
