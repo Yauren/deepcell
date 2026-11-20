@@ -6,7 +6,8 @@ Record each build and test here, newest first. Say plainly what was not tested.
 
 - Resolved one code conflict in `GameActivity.kt` (the `Tutorial(...)` call keeps both `onStepChanged` and the underground `expand()` for room steps) and kept both sides of the docs.
 - `gradlew.bat assembleDebug`: **BUILD SUCCESSFUL**.
-- **Not tested:** the two features together on a device or emulator (for example the tutorial pausing while the underground is collapsed).
+- Emulator (Medium_Phone, existing wave-7 save, Continue): merged build installs and launches with no crash-buffer entries. Both rooms show +5 payout and 50 storage with resource icons; the arrow collapses the rooms (sky fills the screen, tabs stay reachable) and scrap kept increasing while collapsed.
+- **Not tested:** the tutorial (it needs a new game, which would overwrite the emulator save), tutorial pausing with the underground collapsed, a physical phone, expanding again after collapse.
 
 ## 2026-11-10: collapsible underground (JaielJohannPerez fork)
 
