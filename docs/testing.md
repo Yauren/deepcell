@@ -2,6 +2,13 @@
 
 Record each build and test here, newest first. Say plainly what was not tested.
 
+## 2026-11-20: offline catch-up, later waves and a small screen
+
+- Pixel 7: sent the game to the background for about 100 seconds and reopened it. Scrap Dig storage went from 40/50 to a full 50/50, scrap rose from 15 to 19, food fell from 11 to 6 (two survivors eating), and the game opened without a crash.
+- Pixel 7: the same save had already advanced from wave 1 to wave 4 while running, with the hatch down to 11/100 and no defenders. No crash or stuck screen. Waves beyond 4, a hatch reaching 0, and boss waves were not played.
+- Emulator, resized to 720x1280 at 280dpi (small phone): menu, game screen, tutorial card, highlighted controls and bottom tabs all fit and stayed usable. The size was reset afterwards.
+- **Not tested:** Android versions other than the Android 37.1 emulator image and the Pixel 7 (the app's minSdk is 24, and no older image is installed here), tablets, a hatch breach, waves past 4.
+
 ## 2026-11-20: full tutorial on a Pixel 7 (physical phone)
 
 - App data on the phone was cleared (with the owner's OK), then New Game, Tutorial. Build with the `canCollapse` fix, installed over wireless debugging.
